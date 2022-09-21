@@ -6,19 +6,15 @@ public class main {
 
     static String fileName;
 
-    private static void validateNumber(int numb) throws InvalidNumberException {
 
-        if (numb <= 0 ) {
-            throw new InvalidNumberException("Invalid number");
-        }
-    }
 
     public static void main(String[] args) throws InvalidNumberException, IOException, InvalidFileNameException {
 
         BufferedReader reader = new BufferedReader(new FileReader("result.txt"));
+        ValidateNumber validateNumber = new ValidateNumber();
 
         solution s = new solution();
-        validateNumber(s.maxNumberOfBalloons(reader.readLine()));
+        validateNumber.validateNumber(s.maxNumberOfBalloons(reader.readLine()));
         reader.close();
 
         BufferedReader reader2 = new BufferedReader(new FileReader("result.txt"));
