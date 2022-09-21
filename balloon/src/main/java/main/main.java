@@ -37,6 +37,7 @@ public class main {
             System.out.println("Created file result3.txt");
         }
         catch (NullPointerException | IOException | SecurityException e) {
+            System.out.println(e.getClass().getCanonicalName());
             throw new InvalidFileNameException("Didnt created file");
         }
 
