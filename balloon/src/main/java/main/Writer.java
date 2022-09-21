@@ -9,12 +9,12 @@ public class Writer {
     public Writer() throws InvalidFileNameException {
 
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("result.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("result.txt", true));
             writer.write("BLOANSNNADONNLLLNNNOOAASDABB");
             writer.close();
+            System.out.println("Zatvoren");
         } catch (IOException e) {
             throw  new InvalidFileNameException("File name dose not exist");
         }
-
     }
 }

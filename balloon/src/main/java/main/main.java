@@ -1,9 +1,6 @@
 package main;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class main {
 
@@ -18,25 +15,29 @@ public class main {
 
     public static void main(String[] args) throws InvalidNumberException, IOException, InvalidFileNameException {
 
-        Writer writer = new Writer();
         BufferedReader reader = new BufferedReader(new FileReader("result.txt"));
-        BufferedReader reader2 = new BufferedReader(new FileReader("result.txt"));
 
         solution s = new solution();
         validateNumber(s.maxNumberOfBalloons(reader.readLine()));
-        System.out.println(s.maxNumberOfBalloons(reader2.readLine()));
         reader.close();
+
+        BufferedReader reader2 = new BufferedReader(new FileReader("result.txt"));
+        BufferedWriter writer2 = new BufferedWriter(new FileWriter("result2.txt"));
+        int result = s.maxNumberOfBalloons(reader2.readLine());
+        System.out.println(result);
+        writer2.write(String.valueOf(result));
+        writer2.close();
         reader2.close();
 
-        fileName = "c:\\Java\\Hello.txt";
+        fileName = "result3.txt";
 
         try{
             File f = new File(fileName);
             f.createNewFile();
-            System.out.println("Created file Hello.txt");
+            System.out.println("Created file result3.txt");
         }
         catch (NullPointerException | IOException | SecurityException e) {
-            System.out.println("Unable to create Hello.txt ... " + e);
+            throw new InvalidFileNameException("Didnt created file");
         }
 
     }
