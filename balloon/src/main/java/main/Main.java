@@ -2,11 +2,9 @@ package main;
 
 import java.io.*;
 
-public class main {
+public class Main {
 
     static String fileName;
-
-
 
     public static void main(String[] args) throws InvalidNumberException, IOException, InvalidFileNameException {
 
@@ -36,7 +34,5 @@ public class main {
             System.out.println(e.getClass().getCanonicalName());
             throw new InvalidFileNameException("Didnt created file");
         }
-
     }
-
 }
