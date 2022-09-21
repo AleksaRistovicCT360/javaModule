@@ -24,4 +24,5 @@ public class solution {
         return Math.min(min1/2, min2);
     }
 
+
 }
