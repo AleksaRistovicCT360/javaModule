@@ -17,6 +17,7 @@ public class Main {
 
         BufferedReader reader2 = new BufferedReader(new FileReader("result.txt"));
         BufferedWriter writer2 = new BufferedWriter(new FileWriter("result2.txt"));
+
         int result = s.maxNumberOfBalloons(reader2.readLine());
         System.out.println(result);
         writer2.write(String.valueOf(result));
