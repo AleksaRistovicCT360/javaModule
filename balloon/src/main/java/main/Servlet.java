@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Servlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-
+    FileWriter fwriter;
     public Servlet() {
 
     }
@@ -34,16 +34,48 @@ public class Servlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = response.getWriter();
-        BufferedWriter writer1 = new BufferedWriter(new FileWriter("result.txt"));
+        fwriter = new FileWriter("result.txt");
+        BufferedWriter writer1 = new BufferedWriter(fwriter);
         solution s = new solution();
 
-        String id = request.getParameter("id");
+        String string = request.getParameter("string");
 
-        writer1.write("U ovom stringu se nalazi " + s.maxNumberOfBalloons(id) + " br. reci BALLOON");
+        writer1.write("U ovom stringu se nalazi " + s.maxNumberOfBalloons(string) + " br. reci BALLOON");
         writer1.close();
-
         writer.println("Izracunato i uspesno upisano u file result!");
 
     }
 
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        resp.setContentType("text/html;charset=UTF-8");
+        PrintWriter writer = resp.getWriter();
+
+        fwriter = new FileWriter("result.txt", false);
+        BufferedWriter writer2 = new BufferedWriter(fwriter);
+        solution s = new solution();
+
+        String string = req.getParameter("string");
+
+        writer2.write("U ovom stringu se nalazi " + s.maxNumberOfBalloons(string) + " br. reci BALLOON");
+        writer2.close();
+
+        writer.println("Izracunato i uspesno updateovan file result!");
+
+    }
+
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        resp.setContentType("text/html;charset=UTF-8");
+        PrintWriter writer = resp.getWriter();
+
+        fwriter = new FileWriter("result.txt", false);
+        BufferedWriter writer2 = new BufferedWriter(fwriter);
+
+        writer2.write("");
+        writer2.close();
+
+        writer.println("Uspesno izbrisani podatci iz filea result!");
+
+    }
 }
