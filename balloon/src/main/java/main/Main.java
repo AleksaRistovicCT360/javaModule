@@ -2,6 +2,9 @@ package main;
 
 import java.io.*;
 import java.net.URL;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Main {
 
@@ -36,6 +39,24 @@ public class Main {
             System.out.println(e.getClass().getCanonicalName());
             throw new InvalidFileNameException("Didnt created file");
         }
+
+        File directory = new File("C:\\Users\\aristovic\\IdeaProjects\\javaModule\\balloon");
+        File[] fi = directory.listFiles();
+        int fileCount = 0;
+        int files = 0;
+
+        Executor executor = Executors.newCachedThreadPool();
+
+        for (int i = 0; i<fi.length; i++) {
+
+            if (fi[i].getName().endsWith(".txt")) {
+                fileCount++;
+                int finalFiles = files++;
+                executor.execute(() -> System.out.println("File " + finalFiles));
+            }
+        }
+
+        System.out.println("File Count: " + fileCount);
 
     }
 }

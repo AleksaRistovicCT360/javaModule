@@ -13,16 +13,18 @@ import javax.servlet.http.HttpServletResponse;
 public class Servlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
+
     FileWriter fwriter;
+
     public Servlet() {
 
     }
-
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = response.getWriter();
+
         solution s = new solution();
         BufferedReader reader = new BufferedReader(new FileReader("string.txt"));
 
@@ -34,7 +36,9 @@ public class Servlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter writer = response.getWriter();
+
         fwriter = new FileWriter("result.txt");
+
         BufferedWriter writer1 = new BufferedWriter(fwriter);
         solution s = new solution();
 
@@ -42,6 +46,7 @@ public class Servlet extends HttpServlet {
 
         writer1.write("U ovom stringu se nalazi " + s.maxNumberOfBalloons(string) + " br. reci BALLOON");
         writer1.close();
+
         writer.println("Izracunato i uspesno upisano u file result!");
 
     }
@@ -52,6 +57,7 @@ public class Servlet extends HttpServlet {
         PrintWriter writer = resp.getWriter();
 
         fwriter = new FileWriter("result.txt", false);
+
         BufferedWriter writer2 = new BufferedWriter(fwriter);
         solution s = new solution();
 
@@ -70,6 +76,7 @@ public class Servlet extends HttpServlet {
         PrintWriter writer = resp.getWriter();
 
         fwriter = new FileWriter("result.txt", false);
+
         BufferedWriter writer2 = new BufferedWriter(fwriter);
 
         writer2.write("");
