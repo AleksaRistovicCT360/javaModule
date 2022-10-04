@@ -56,7 +56,7 @@ public class Main {
                 try {
                     writer.write( s.maxNumberOfBalloons(finalLine) + "\n");
                     writer.flush();
-                    System.out.println(finalLine);
+                    System.out.println("Thread wrote in file result3");
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

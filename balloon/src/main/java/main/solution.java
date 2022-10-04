@@ -1,17 +1,33 @@
 package main;
 
+import org.codehaus.plexus.util.FileUtils;
+
+import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class solution {
 
-    public int maxNumberOfBalloons(String text) {
+    public int maxNumberOfBalloons(String text) throws IOException {
+
         HashMap<Character,Integer> map = new HashMap<>();
 
-        map.put('B',0);
-        map.put('A',0);
-        map.put('L',0);
-        map.put('O',0);
-        map.put('N',0);
+        File folder = new File("C:\\Users\\aristovic\\IdeaProjects\\javaModule\\balloon");
+        File[] listOfFiles = folder.listFiles();
+
+        for (int i = 0; i < listOfFiles.length; i++) {
+            File file = listOfFiles[i];
+            if (file.isFile() && file.getName().endsWith(".txt")) {
+                String content = FileUtils.fileRead(file);
+                for (int j = 0; j < content.length(); j++) {
+                    if (!map.containsKey(content.charAt(j))) {
+                        map.put(content.charAt(j), 0);
+                    }
+                }
+                break;
+            }
+        }
 
         for(char i:text.toCharArray()){
                 if(map.containsKey(i))

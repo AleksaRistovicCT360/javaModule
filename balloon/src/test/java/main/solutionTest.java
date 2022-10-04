@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -26,7 +28,7 @@ class solutionTest {
     }
 
     @Test
-    public void balloonLettersAreThere() {
+    public void balloonLettersAreThere() throws IOException {
         solution s = new solution();
         assertTrue(s.maxNumberOfBalloons("BLLOONA") > 0);
         System.out.println("Checking balloon test passed!");
