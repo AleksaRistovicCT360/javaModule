@@ -1,9 +1,7 @@
 package main;
 
 import java.io.*;
-import java.net.URL;
 import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Main {
@@ -47,9 +45,31 @@ public class Main {
 
         Executor executor = Executors.newCachedThreadPool();
 
+        BufferedWriter writer = new BufferedWriter(new FileWriter("result3.txt"));
+        BufferedReader reader1 = new BufferedReader(new FileReader("result.txt"));
+        String line = reader1.readLine();
+
+        while (line != null) {
+
+            String finalLine = line;
+            executor.execute(() -> {
+                try {
+                    writer.write( s.maxNumberOfBalloons(finalLine) + "\n");
+                    writer.flush();
+                    System.out.println(finalLine);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+            line = reader1.readLine();
+        }
+        reader1.close();
+
+
         for (int i = 0; i<fi.length; i++) {
 
             if (fi[i].getName().endsWith(".txt")) {
+
                 fileCount++;
                 int finalFiles = files++;
                 executor.execute(() -> System.out.println("File " + finalFiles));
